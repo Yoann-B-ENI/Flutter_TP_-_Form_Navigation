@@ -20,4 +20,14 @@ class Tweet {
   set content(String value) {
     _content = value;
   }
+
+  // custom date formatting, could try overriding toString
+  String getFormattedDate(){
+    return "${_createdAt.day} ${_createdAt.month} ${_createdAt.year} ${_createdAt.hour}:${_createdAt.minute}.${_createdAt.second}";
+  }
+
+
+
+
+
 }

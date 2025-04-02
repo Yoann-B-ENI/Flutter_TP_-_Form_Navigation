@@ -7,6 +7,9 @@ Widget pageNewTweet({required Null Function(Tweet newTweet) addTweet}){
   String? _authorValue;
   String? _contentValue;
 
+  // temp local function, only exists here
+  // purpose is to wrap the new Tweet instancing and the callback to add to a list
+  // the function is a single object that's convenient to reference in the form button
   void onSubmit(){
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -17,6 +20,7 @@ Widget pageNewTweet({required Null Function(Tweet newTweet) addTweet}){
     }
   }
 
+  // temp local function for validation, same logic
   String? authorValidate(newVal){
     if (newVal == null || newVal.isEmpty) {
       return 'Please enter your name';

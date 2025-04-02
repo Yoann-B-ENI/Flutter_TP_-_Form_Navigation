@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp_widgets_2/bo/tweet.dart';
 
+// custom widget list of tweets, to feed into a 'children' of some list-like widget
 List<Widget> myAllTweets(List<Tweet> tweetDB) {
   List<Widget> tempList = [];
   for (var t in tweetDB){
@@ -9,6 +10,7 @@ List<Widget> myAllTweets(List<Tweet> tweetDB) {
   return tempList;
 }
 
+// custom widget, just a wrapper
 BottomNavigationBar myBottomBar(){
   return BottomNavigationBar(items: const <BottomNavigationBarItem>[
     BottomNavigationBarItem(icon: Text('Fil'), label: ''),
@@ -18,6 +20,7 @@ BottomNavigationBar myBottomBar(){
   ]);
 }
 
+// custom widget for a header (not relevant anymore since we have a tab bar)
 Widget myHeader(){
   return Container(
     color: Color(0xFF58B0F0),
@@ -41,6 +44,7 @@ Widget myHeader(){
   );
 }
 
+// custom Card widget for one tweet
 Card myMessageCard(Tweet tweet){
   return Card(
     child: Column(
@@ -61,7 +65,7 @@ Card myMessageCard(Tweet tweet){
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(tweet.createdAt.toString()),
+                  child: Text(tweet.getFormattedDate()),
                 )
               ],
             )
