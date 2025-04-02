@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Null addNewTweet(Tweet tweet){
+  addNewTweet(Tweet tweet){
     setState(() {
       tweetDB.add(tweet);
     });
