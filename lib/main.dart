@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
+        // we don't define '/' because of the 'home' parameter below
         '/tweet': (context) => const TweetPage(),
       },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),

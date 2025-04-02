@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Tweet {
 
   String _content;
@@ -26,6 +28,13 @@ class Tweet {
     return "${_createdAt.day} ${_createdAt.month} ${_createdAt.year} ${_createdAt.hour}:${_createdAt.minute}.${_createdAt.second}";
   }
 
+  void goToPage(BuildContext context){
+    Navigator.pushNamed(
+        context,
+        '/tweet',
+        arguments: this
+    );
+  }
 
 
 

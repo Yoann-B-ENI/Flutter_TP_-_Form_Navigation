@@ -77,13 +77,7 @@ Card myMessageCard(Tweet tweet, BuildContext context){
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: ElevatedButton(onPressed: ()=>{
-                Navigator.pushNamed(
-                    context,
-                    '/tweet',
-                    arguments: tweet
-                )
-              }, child: Text('Répondre')
+              child: ElevatedButton(onPressed: ()=>tweet.goToPage(context), child: Text('Répondre')
               ),
             ),
             Padding(

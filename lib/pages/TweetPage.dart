@@ -7,10 +7,11 @@ import 'package:tp_widgets_2/bo/tweet.dart';
 import '../widgets/customWidgets.dart';
 
 class TweetPage extends StatelessWidget {
-  const TweetPage({super.key});
+  const TweetPage({super.key}); // no tweet as argument even if we pass args to the route
 
   @override
   Widget build(BuildContext context) {
+    // get args here
     final args = ModalRoute.of(context)!.settings.arguments as Tweet;
 
     return Scaffold(
