@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tp_widgets_2/pages/Contact.dart';
-import 'package:tp_widgets_2/pages/NewTweet.dart';
-import 'package:tp_widgets_2/pages/TweetPage.dart';
+import 'package:tp_widgets_2/pages/HomePage_Tabs/Contact.dart';
+import 'package:tp_widgets_2/pages/HomePage_Tabs/NewTweet.dart';
+import 'package:tp_widgets_2/pages/HomePage_Tabs/AllTweetsPage.dart';
 import 'package:tp_widgets_2/bo/tweet.dart';
+import 'package:tp_widgets_2/pages/TweetPage.dart';
 
 import 'widgets/customWidgets.dart';
 
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
+      initialRoute: '/',
+      routes: {
+        '/tweet': (context) => const TweetPage(),
+      },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -46,12 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 3,
       child: Scaffold(
         appBar: buildAppBar(),
         body: TabBarView(children: [
-            pageTweetPage(tweetDB),
+            pageTweetPage(tweetDB, context),
             pageNewTweet(addTweet: addNewTweet),
             pageContact()
           ]),
