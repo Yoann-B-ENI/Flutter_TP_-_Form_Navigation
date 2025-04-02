@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp_widgets_2/bo/tweet.dart';
 
+// pass in a function capable of adding to a local list in another context
 Widget pageNewTweet({required Null Function(Tweet newTweet) addTweet}){
   final _formKey = GlobalKey<FormState>();
 
