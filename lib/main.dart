@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:tp_widgets_2/pages/HomePage_Tabs/AllTweetLongsPage.dart';
 import 'package:tp_widgets_2/pages/HomePage_Tabs/Contact.dart';
 import 'package:tp_widgets_2/pages/HomePage_Tabs/NewTweet.dart';
@@ -51,7 +54,25 @@ class _MyHomePageState extends State<MyHomePage> {
     Tweet('Author 3', 'Content 3', DateTime.now())
   ];
 
-  List<TweetLong> tweetAPI = [];
+  late Future<List<TweetLong>> tweetAPI;
+
+  Future<List<TweetLong>> callAPI() async {
+    const url = 'https://raw.githubusercontent.com/Chocolaterie/EniWebService/main/api/tweets.json';
+    var response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      var tweetList = TweetLong.fromJsonList(jsonDecode(response.body) as List<dynamic>);
+      // replaceTweetDB(tweetList);
+      return tweetList;
+    } else {
+      throw Exception('API did not return 200');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tweetAPI = callAPI();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: buildAppBar(),
         body: TabBarView(children: [
             // pageTweetPage(tweetDB, context),
-            pageTweetLongPage(tweetAPI, context, replaceTweetDB),
+            pageTweetLongPage(tweetAPI, context),
             pageNewTweet(addTweet: addNewTweet),
             pageContact()
           ]),
@@ -87,10 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       tweetDB.add(tweet);
     });
-  }
-
-  replaceTweetDB(List<TweetLong> tweetListAPI){
-    tweetAPI = tweetListAPI;
   }
 
 
