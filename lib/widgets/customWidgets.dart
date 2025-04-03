@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:tp_widgets_2/bo/tweet.dart';
 import 'package:tp_widgets_2/pages/TweetPage.dart';
 
+import '../bo/tweetLong.dart';
+
 // custom widget list of tweets, to feed into a 'children' of some list-like widget
 List<Widget> myAllTweets(List<Tweet> tweetDB, BuildContext context) {
   List<Widget> tempList = [];
   for (var t in tweetDB){
     tempList.add(myMessageCard(t, context));
+  }
+  return tempList;
+}
+
+// custom widget list of tweets, to feed into a 'children' of some list-like widget
+List<Widget> myAllTweetLongs(List<TweetLong> tweetDB, BuildContext context) {
+  List<Widget> tempList = [];
+  for (var t in tweetDB){
+    tempList.add(myMessageCardLong(t, context));
   }
   return tempList;
 }
@@ -67,6 +78,56 @@ Card myMessageCard(Tweet tweet, BuildContext context){
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(tweet.getFormattedDate()),
+                )
+              ],
+            )
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ElevatedButton(onPressed: ()=>tweet.goToPage(context), child: Text('Répondre')
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text('Partager'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text('Favoris'),
+            )
+          ],
+        )
+      ],
+    ),
+  );
+}
+
+// custom Card widget for one tweet
+Card myMessageCardLong(TweetLong tweet, BuildContext context){
+  return Card(
+    child: Column(
+      children: [
+        Row(
+          children: [
+            Image.network('https://fastly.picsum.photos/id/798/125/125.jpg?hmac=W6pRIwWSxttAWQZch7EKlxBs-ypc1FSblvBEjxoXdOA',
+              fit: BoxFit.contain,),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(tweet.author),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(tweet.message),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(tweet.createdDate.toString()),
                 )
               ],
             )

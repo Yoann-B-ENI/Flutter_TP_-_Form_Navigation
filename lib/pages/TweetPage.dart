@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tp_widgets_2/pages/HomePage_Tabs/Contact.dart';
-import 'package:tp_widgets_2/pages/HomePage_Tabs/NewTweet.dart';
-import 'package:tp_widgets_2/pages/HomePage_Tabs/AllTweetsPage.dart';
 import 'package:tp_widgets_2/bo/tweet.dart';
 
-import '../widgets/customWidgets.dart';
 
 class TweetPage extends StatelessWidget {
   const TweetPage({super.key}); // no tweet as argument even if we pass args to the route

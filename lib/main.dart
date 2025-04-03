@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tp_widgets_2/pages/HomePage_Tabs/AllTweetLongsPage.dart';
 import 'package:tp_widgets_2/pages/HomePage_Tabs/Contact.dart';
 import 'package:tp_widgets_2/pages/HomePage_Tabs/NewTweet.dart';
 import 'package:tp_widgets_2/pages/HomePage_Tabs/AllTweetsPage.dart';
 import 'package:tp_widgets_2/bo/tweet.dart';
 import 'package:tp_widgets_2/pages/TweetPage.dart';
 
+import 'bo/tweetLong.dart';
 import 'widgets/customWidgets.dart';
 
 void main() {
@@ -49,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Tweet('Author 3', 'Content 3', DateTime.now())
   ];
 
+  List<TweetLong> tweetAPI = [];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -57,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: buildAppBar(),
         body: TabBarView(children: [
-            pageTweetPage(tweetDB, context),
+            // pageTweetPage(tweetDB, context),
+            pageTweetLongPage(tweetAPI, context, replaceTweetDB),
             pageNewTweet(addTweet: addNewTweet),
             pageContact()
           ]),
@@ -84,6 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  replaceTweetDB(List<TweetLong> tweetListAPI){
+    tweetAPI = tweetListAPI;
+  }
 
 
 }
